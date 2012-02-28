@@ -5,7 +5,6 @@ describe TwitterLinks do
   let(:linkies) { %w{A B C D E} }
 
   context "Setup" do
-
     before :each do
       @t = TwitterLinks.new()
     end
@@ -42,11 +41,9 @@ describe TwitterLinks do
       ruby = TwitterLinks.new(hashtag: "#ruby")
       ruby.hashtag.should eql "#ruby"
     end
-
   end
 
   context "Search" do
-
     before :each do
       @ruby   = TwitterLinks.new(hashtag: "ruby")
       @oscars = TwitterLinks.new(hashtag: "oscars")
@@ -75,7 +72,6 @@ describe TwitterLinks do
       @ruby.links.should_not eql nil
     end
   end
-
 
   context "Process" do
 
