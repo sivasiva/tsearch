@@ -42,11 +42,40 @@ describe TwitterLinks do
       ruby = TwitterLinks.new(hashtag: "#ruby")
       ruby.hashtag.should eql "#ruby"
     end
+
   end
 
   context "Search" do
 
+    before :each do
+      @ruby   = TwitterLinks.new(hashtag: "ruby")
+      @oscars = TwitterLinks.new(hashtag: "oscars")
+
+      @ruby.search
+      @oscars.search
+    end
+
+    it "accepts tags with or without the hash" do
+      @ruby.hashtag.should eql "#ruby"
+      @oscars.hashtag.should eql "#oscars"
+    end
+    it "fetches 100 tweets for the given hashTag" do
+      @ruby.tweets.length.should eql 100
+    end
+
+    it "stores the search results" do
+      @ruby.tweets.should_not eql nil
+    end
+
+    it "performs fresh search for each given tag" do
+      @ruby.should_not eql @oscars
+    end
+
+    it "stores the links from the tweets" do
+      @ruby.links.should_not eql nil
+    end
   end
+
 
   context "Process" do
 
